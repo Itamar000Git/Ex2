@@ -36,15 +36,12 @@ public class Ex2_main {
 		ex2.show();
 	}
 
-
-
 	// Loads a file from file a1.txt.
 	public static void loadDemo() {
 		Ex2 ex2 = Ex2.getInstance();
 		GUI_Shape_Collection shapes = ex2.getShape_Collection();
 
-		String file = "C:\\Users\\itama\\IdeaProjects\\a00.txt"; //make sure the file is your working directory.
-		//String file="a1.txt";
+		String file = "a1.txt"; //make sure the file is your working directory.
 		shapes.load(file);
 		ex2.init(shapes);
 		ex2.show();

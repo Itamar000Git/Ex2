@@ -8,6 +8,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -32,6 +36,12 @@ public class ShapeCollection implements GUI_Shape_Collection {
 		return _shapes.size();
 	}
 
+
+	/**
+	 * Removes selected shapes.
+	 * @param i - the index of the element to be removed.
+	 * @return
+	 */
 	@Override
 	public GUI_Shape removeElementAt(int i) {			//done
 		//////////add your code below ///////////
@@ -40,21 +50,14 @@ public class ShapeCollection implements GUI_Shape_Collection {
 		//////////////////////////////////////////
 	}
 
+
 	@Override
 	public void addAt(GUI_Shape s, int i) {			///done
 		//////////add your code below ///////////
-
-//		_shapes.addLast(s);
-//		int size=_shapes.size();
-//
-//		for (int j=(size-1);j>=i;j--){
-//			_shapes.add(_shapes.get(j));
-//			_shapes.remove(_shapes.get(j));
-//		}
-//
 		_shapes.add(i,s);
 		//////////////////////////////////////////
 	}
+
 	@Override
 	public void add(GUI_Shape s) {
 		if(s!=null && s.getShape()!=null) {
@@ -64,38 +67,39 @@ public class ShapeCollection implements GUI_Shape_Collection {
 	@Override
 	public GUI_Shape_Collection copy() {
 		//////////add your code below ///////////
-		GUI_Shape co=new GUIShape(_shapes.toString());
-
-		return (GUI_Shape_Collection) co.copy();
+		ShapeCollection SC = new ShapeCollection();
+		for (int i=0;i<_shapes.size();i++){
+			SC.add(_shapes.get(i).copy());
+		}
+		return SC;
 		//////////////////////////////////////////
 	}
+
+	/**
+	 * Implement ALL sorting elements that can be done on shapes.
+	 * Using Babble Sort method.
+	 * @param comp a linear order over gui_shapes as defined in java.util.Comparator
+	 */
 
 	@Override
 	public void sort(Comparator<GUI_Shape> comp) {
-		//////////add your code below ///////////
-
-		int a;
-		for (int i =0; (i<_shapes.size()-1);i++){
-
-			a= comp.compare(this._shapes.get(i),this._shapes.get(i+1));
-			if (a>=1){
-				this._shapes.add(_shapes.get(i+1));
-				this._shapes.remove(_shapes.get(i+1));
-
-				this._shapes.add(_shapes.get(i));
-				this._shapes.remove(_shapes.get(i));
+		int n = _shapes.size();
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = 0; j < n - i - 1; j++) {
+				if (comp.compare(_shapes.get(j), _shapes.get(j + 1)) > 0) {
+					// Swap elements at index j and j+1
+					GUI_Shape temp = _shapes.get(j);
+					_shapes.set(j, _shapes.get(j + 1));
+					_shapes.set(j + 1, temp);
+				}
 			}
 		}
-
-//		System.out.println(a);
-//		if (a==1){
-//			this._shapes.add(_shapes.get(0));
-//			this._shapes.remove(_shapes.get(0));
-//		}
-		
-		//////////////////////////////////////////
 	}
 
+
+	/**
+	 * Implement the CLEAR option
+	 */
 	@Override
 	public void removeAll() {				//done
 		//////////add your code below ///////////
@@ -106,56 +110,52 @@ public class ShapeCollection implements GUI_Shape_Collection {
 		//////////////////////////////////////////
 	}
 
+	/**
+	 * This function takes the string and replace the color part with the color encoding
+	 * @param replacement
+	 * @param t
+	 * @return
+	 */
+	private String modifyString( String replacement,String[] t) {
+		// Replace the target substring with the replacement string
+		String temp="";
+
+		for (int i=4;i<t.length;i++){
+			temp+=t[i]+",";
+		}
+		String m= t[0]+","+replacement+","+temp;
+		return m;
+	}
+
+	/**
+	 * Convert every shape to string and Save file after changing the color value.
+	 * @param file - the file name in which this collection will be saved.
+	 */
 	@Override
 	public void save(String file) {
 		//////////add your code below ///////////
 		int cEncode;
-		String ModifiedString , newString;
-
+		String ModifiedString;
 		String[] s = file.split(",");
 
-		for (int i = 0; i < _shapes.size(); i++) {
-			try {
-				BufferedWriter writer = new BufferedWriter(new FileWriter(s[0]));
-				cEncode = colorEncoding(this._shapes.get(i).getColor());
-				newString = cEncode + "";
-				System.out.println(cEncode);
-				ModifiedString=file;
+			try (BufferedWriter writer = new BufferedWriter(new FileWriter(s[0]))) {
+				for (GUI_Shape shape: _shapes) {
+					String modifiedString = shape.toString();
 
-				for (int j = 1; j < s.length; j++) {
-					if (s[j].contains("java.awt.Color")){
-						ModifiedString=stringFix(ModifiedString,j,newString);
-						s=ModifiedString.split(",");
+					if (modifiedString.contains("java.awt.Color")) {
+						String[] t= modifiedString.split(",");
+						int colorCode = colorEncoding(shape.getColor());
+						modifiedString = modifyString(String.valueOf(colorCode),t);
 					}
-					if (j == (s.length - 1) && i==(_shapes.size()-1)) {
-						writer.write(s[j]);
-					} else {
-						writer.write(s[j]+","); // Write the last item without a comma
-					}
+					writer.write(modifiedString);
+					writer.newLine(); // Write a new line for the next shape
 				}
-				writer.close();
 			} catch (IOException e) {
-				throw new RuntimeException(e);
+				throw new RuntimeException("Error writing to file: " + e.getMessage());
 			}
-
-		}
-
 
 		//////////////////////////////////////////
 	}
-	public String stringFix(String str , int k,String myColor){
-		String oldString;
-		String[] t = str.split(",");
-
-		oldString = t[k]+"," + t[k+1]+"," + t[k+2];
-		System.out.println("trying to replace: " + oldString + " with: " + myColor);
-		str=str.replace(oldString,myColor);
-
-		System.out.println(str);
-
-	return str;
-	}
-
 
 	public static int colorEncoding(Color c) {
 		int r = c.getRed();
@@ -169,29 +169,10 @@ public class ShapeCollection implements GUI_Shape_Collection {
 	public String s[];
 
 	@Override
-//	public void load(String file) {
-//
-//		////////// add your code below ///////////
-//		int langth;
-//        try {
-//            BufferedReader reader = new BufferedReader(new FileReader(file));
-//			String line;
-//			while ((line=reader.readLine())!=null) {
-//			new ex2.gui.GUIShape(line);
-//
-//				langth=line.split(",").length;
-//				s=new String[langth];
-//				s=line.split(",");
-//
-//			}
-//				reader.close();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        //////////////////////////////////////////
-//	}
+/**
+ * Takes text file and convert every line to string,this string sends to GUIShape class for convert.
+ */
 	public void load(String file) {
-		//ArrayList<String> arrayList = new ArrayList<>();
 		try {
 			File myObj = new File(file);
 			Scanner myReader = new Scanner(myObj);
@@ -199,7 +180,6 @@ public class ShapeCollection implements GUI_Shape_Collection {
 
 			while (myReader.hasNextLine()) {
 				String data = myReader.nextLine();
-				//arrayList.add(data);
 				GUIShape shape = new GUIShape(data);
 				_shapes.add(shape);
 				System.out.println(data);
@@ -219,6 +199,4 @@ public class ShapeCollection implements GUI_Shape_Collection {
 		}
 		return ans;
 	}
-	
-
 }

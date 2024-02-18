@@ -7,7 +7,11 @@ public class Rect_2D implements GeoShape{
 	private Point_2D _p1,_p2,_p3,_p4;
 
 
-
+	/**
+	 * Creating parallel rectangle from 2 points.
+	 * @param p1
+	 * @param p2
+	 */
 	public Rect_2D(Point_2D p1, Point_2D p2) {		        //done
 		////// add your code here //////
 		this._p1=new Point_2D(p1);
@@ -23,15 +27,6 @@ public class Rect_2D implements GeoShape{
 		_p2=new Point_2D(r1._p2) ;
 		_p3=new Point_2D(r1._p3) ;
 		_p4=new Point_2D(r1._p4) ;
-
-//        this._p1=new Point_2D(rec[0]) ;
-//        this._p3=new Point_2D(rec[1]) ;
-//        this._p4=new Point_2D(rec[2]) ;
-//        this._p2=new Point_2D(rec[3]) ;
-		// this._p1=rec[0];
-		//  this._p3= rec[1];
-		//  this._p4= rec[2];
-		// this._p2= rec[3];
 		////////////////////////////////
 	}
 
@@ -49,12 +44,12 @@ public class Rect_2D implements GeoShape{
 		return this._p4;
 	}
 
+	/**
+	 * save rectangle direction even after copy.
+	 * @return
+	 */
 	public Point_2D[] getAllPoints(){
 		Point_2D [] points = new Point_2D[4];
-//		points[0]=_p1;
-//		points[1]=_p3;
-//		points[2]=_p2;
-//		points[3]=_p4;
 		points[0]=_p4;
 		points[1]=_p2;
 		points[2]=_p3;
@@ -78,7 +73,12 @@ public class Rect_2D implements GeoShape{
 		return _p4=p;
 	}
 
-
+	/**
+	 * using past knowledge from triangle contain.
+	 * (also can be done by checks triangle contain of 2 triangles)
+	 * @param ot - a query 2D point
+	 * @return
+	 */
 	@Override
 	public boolean contains(Point_2D ot) {
 		double sT,sR;
@@ -98,9 +98,7 @@ public class Rect_2D implements GeoShape{
 	@Override
 	public double area() {
 		double Recarea;
-
 		Recarea= _p1.distance(_p3) *_p3.distance(_p2);
-
 		return Recarea;
 	}
 
@@ -134,7 +132,7 @@ public class Rect_2D implements GeoShape{
 	}
 
 	@Override
-	public void rotate(Point_2D center, double angleDegrees) {          //not working yet
+	public void rotate(Point_2D center, double angleDegrees) {
 
 		this._p1.rotate(center,angleDegrees);
 		this._p2.rotate(center,angleDegrees);

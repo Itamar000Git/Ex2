@@ -21,7 +21,62 @@ import java.io.IOException;
  * 2. Your code will be run by our "main" based on the interfaces api given to you.
  *
  * Itamar Babai - 206847584
- * Explnation:
+ *
+ * Explanation:
+ ***This program implements gui platform for geometric shapes. The shapes are Segment, Circle, Triangle,
+ * Rectangle and Polygon. Every shape have few properties: color, size, full/empty. we can choose a specific shape or all the shapes together.
+ *
+ *
+ * Detailed explanation:
+ *** In every shape we implement few methods for that creat the wanted shape.
+ * 1.Builders - for creating 2_D points and build the full shape (spacial builder is the rectangle,
+ *              that builds by 2 points and parallel to x-axis and y-axis).
+ *
+ * 2.Contains - Tells if a point is inside the shape or not.
+ *
+ * For example in the polygon the method is:
+ * a. Found point that is outside the polygon, we are looking for the max value of "x" and "y" and adding 1 for each.
+ * b. We create segment between the suspect point to the outside point.
+ * c. With help from method that finds the orientation and another method that finds if this segment cross one side of the polygon.
+ * d. We count the number of crossing and if odd the point inside.
+ *
+ * 3.Area - Tells as the area value of the shape, we use the area for diced if a point is inside a shape (in Triangle and Rectangle),
+ *          also for sorting the shaped by areas.
+ *
+ * 4.Perimeter - Tells as the perimeter of the shape, helps us to sort by perimeter.
+ *
+ * 5.Translate - Moves the shape by chosen vector.
+ *
+ * 6.Copy - Makes exact copy of the selected shape/s. helps as with testing.
+ *
+ * 7.Scale - Increasing / Decreasing shape area by 10%.
+ *
+ * 8.Rotate - Rotate the shape by chosen angle around chosen center.
+ *
+ * 9.ToString - Converts all the information to strings values for save , load and print.
+ *
+ *
+ *** This part of the gui platform compares between shapes and sorting them by the following parameters:
+ *
+ * 1.Area / AntiArea: Sort the shapes by the size of their areas / the opposite.
+ *
+ * 2.Perimeter / AntiPerimeter: Sort the shapes by the size of their perimeters / the opposite.
+ *
+ * 3.ToString / AntiToString: Sort by string length / the opposite
+ *
+ * 4. Tag / AntiTag: Sort shapes by there tag number / the opposite.
+ *
+ *
+ *** The last part of the program is to save and load shape collection from the gui:
+ * 1. Clear - Delete all shapes from the gui platform.
+ *
+ * 2. Remove - Delete selected shapes from the gui platform.
+ *
+ * 2. Save - Convert the shape collection (row by row - shape by shape) to string. We need to replace the color string by color encoding.
+ *          After that write the string splits by "," to text file, ready for load.
+ *
+ * 3. Load -Loads text file with string represent geometric shapes,
+ *          sends row by row (shape by shape) to different function that convert every word to shape property.
  *
  * @author boaz.ben-moshe
  */
@@ -112,31 +167,12 @@ public class Ex2 implements Ex2_GUI {
             StdDraw_Ex2.line(m0.x(), m0.y(), m1.x(), m1.y());
 
         }
-
-
-//        if (gs instanceof Rectangle_2D ) {
-//            Rectangle_2D rec =(Rectangle_2D) gs;
-//            Point_2D m0=rec.get_p1();
-//            Point_2D m1=rec.get_p2();
-//            Point_2D m2=rec.get_p3();
-//            Point_2D m3=rec.get_p4();
-//
-//            StdDraw_Ex2.filledRectangle(m0.x(),m3.y(),m0.distance(m3),m0.distance(m2));
-//        }
-
         Point_2D[] ps = null;
         if (gs instanceof Polygon_2D) {
             ps = ((Polygon_2D) gs).getAllPoints();
         }
 
         if (gs instanceof Rect_2D) {
-//            Rectangle_2D rec =(Rectangle_2D) gs;
-//            Point_2D m0=rec.get_p1();
-//            Point_2D m1=rec.get_p2();
-//            Point_2D m2=rec.get_p3();
-//            Point_2D m3=rec.get_p4();
-//
-//            StdDraw_Ex2.filledRectangle(m0.x(),m3.y(),m0.distance(m3),m0.distance(m2));
             ps = ((Rect_2D) gs).getAllPoints();
         }
 
@@ -242,8 +278,7 @@ public class Ex2 implements Ex2_GUI {
             load();
         }
         if (p.equals("ByArea")) {
-            _shapes.sort(ShapeComp.CompByArea);
-
+            _shapes.sort(ShapeComp.CompByArea);     //done
         }
         if (p.equals("ByAntiArea")) {                //done
             _shapes.sort(ShapeComp.CompByAntiArea);
@@ -306,11 +341,7 @@ public class Ex2 implements Ex2_GUI {
         chooser.setVisible(true);
         String filename = chooser.getFile();
         if (filename != null) {
-           // System.out.println(chooser.getDirectory() + File.separator + chooser.getFile());//added
             _shapes.load(chooser.getDirectory() + File.separator + chooser.getFile());
-
-
-
         }
     }
 
@@ -384,14 +415,10 @@ public class Ex2 implements Ex2_GUI {
                 _p1 = null;
                 _gs = null;
             }
-
-
         }
         if (_mode.equals("Point")) {
             select(p);
-
         }
-        //
         if (_mode.equals("Scale_90%")) {
             scale(p, 0.9);
         }

@@ -8,7 +8,7 @@ import ex2.ex2.Ex2_Const;
  * @author I2CS
  *
  */
-public class Segment_2D implements GeoShape{//if we use geo shape we have to use all is functions
+public class Segment_2D implements GeoShape{
 	private Point_2D _p1 ,_p2;
 	public Segment_2D(Point_2D a, Point_2D b) {//this is the builder and this is the tow points that build the segment---done
 		////// add your code here //////
@@ -35,15 +35,13 @@ public class Segment_2D implements GeoShape{//if we use geo shape we have to use
 	}
 
 	@Override
-	public boolean contains(Point_2D ot) { //true if point id inside the segment --- done
+	public boolean contains(Point_2D ot) { //true if point is inside the segment --- done
 		boolean ans = false;
 
 		double dist=_p1.distance(_p2);
 		double d1= _p1.distance(ot);
 		double d2= ot.distance(_p2);
 		ans = (d1+d2) < dist+ Ex2_Const.EPS;
-
-		//ans = (d1+d2)==(dist+Ex2_Const.EPS);  //mt idea need to check
 
 		return ans;
 	}
@@ -77,7 +75,7 @@ public class Segment_2D implements GeoShape{//if we use geo shape we have to use
 		_p2.scale(center,ratio);
 	}
 
-	@Override							//problem for later
+	@Override
 	public void rotate(Point_2D center, double angleDegrees) {
 		_p1.rotate(center,angleDegrees);
 		_p2.rotate(center,angleDegrees);

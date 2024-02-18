@@ -28,13 +28,11 @@ public class Circle_2D implements GeoShape{
 	    {
 			////// add your code here //////
 			return _center.toString()+", "+_radius;
-			//return null;
 			////////////////////////////////
 		}
 	@Override
 	public boolean contains(Point_2D ot) {				//done
 		////// add your code here //////
-
 		return (ot.distance(_center)<_radius);
 		////////////////////////////////
 	}
@@ -43,10 +41,7 @@ public class Circle_2D implements GeoShape{
 	public double area() {
 		////// add your code here //////
 		double e=Math.PI * Math.pow(_radius,2);
-
 		return e;
-
-
 		////////////////////////////////
 	}
 	@Override

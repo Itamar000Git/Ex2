@@ -118,6 +118,10 @@ class Segment_2DTest {
     void toStringTest(){
         System.out.println(s1.toString());
 
+        String a=s1.toString();
+        String b="0.0,0.0,0.0,1.0";
+
+        assertTrue(a.equals(b));
     }
 
 }

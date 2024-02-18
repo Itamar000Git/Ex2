@@ -49,8 +49,7 @@ class Triangle_2DTest {
     void area() {                       //done
         double a=tr1.area();    //1
 
-        assertEquals(a,1, Ex2_Const.EPS);
-
+        assertEquals(a,2, Ex2_Const.EPS);
 
         a=tr2.area();       //9
         assertEquals(a,9,Ex2_Const.EPS);
@@ -72,45 +71,35 @@ class Triangle_2DTest {
     void translateTest() {
         Point_2D vec= new Point_2D(5,7);
         Point_2D vec2= new Point_2D(-5,-7);
-        Triangle_2D q1=new Triangle_2D(tr1);
-        Triangle_2D q2=new Triangle_2D(tr2);
 
+        Triangle_2D q1=(Triangle_2D) tr1.copy();
+        Triangle_2D q2=(Triangle_2D) tr2.copy();
 
         tr1.translate(vec);
         tr2.translate(vec);
-        assertNotEquals(tr1.getAllPoints()[0],q1.getAllPoints()[0]);
-        assertNotEquals(tr1.getAllPoints()[1],q1.getAllPoints()[1]);
-        assertNotEquals(tr1.getAllPoints()[2],q1.getAllPoints()[2]);
-
-        assertNotEquals(tr2.getAllPoints()[0],q2.getAllPoints()[0]);
-        assertNotEquals(tr2.getAllPoints()[1],q2.getAllPoints()[1]);
-        assertNotEquals(tr2.getAllPoints()[2],q2.getAllPoints()[2]);
+        for (int i=0;i<3;i++){
+            assertNotEquals(tr1.getAllPoints()[i],q1.getAllPoints()[i]);
+            assertNotEquals(tr2.getAllPoints()[i],q2.getAllPoints()[i]);
+        }
 
         tr1.translate(vec2);
         tr2.translate(vec2);
-        assertEquals(tr1.getAllPoints()[0],q1.getAllPoints()[0]);
-        assertEquals(tr1.getAllPoints()[1],q1.getAllPoints()[1]);
-        assertEquals(tr1.getAllPoints()[2],q1.getAllPoints()[2]);
-
-        assertEquals(tr2.getAllPoints()[0],q2.getAllPoints()[0]);
-        assertEquals(tr2.getAllPoints()[1],q2.getAllPoints()[1]);
-        assertEquals(tr2.getAllPoints()[2],q2.getAllPoints()[2]);
+        for (int i=0;i<3;i++) {
+            assertEquals(tr1.getAllPoints()[i],q1.getAllPoints()[i]);
+            assertEquals(tr2.getAllPoints()[i],q2.getAllPoints()[i]);
+        }
     }
 
     @Test
     void copyTest() {
 
         Triangle_2D co=(Triangle_2D) tr1.copy();
-        assertEquals(tr1.getAllPoints()[0],co.getAllPoints()[0]);
-        assertEquals(tr1.getAllPoints()[1],co.getAllPoints()[1]);
-        assertEquals(tr1.getAllPoints()[2],co.getAllPoints()[2]);
+        Triangle_2D co1=(Triangle_2D) tr2.copy();
 
-         co=(Triangle_2D) tr2.copy();
-        assertEquals(tr2.getAllPoints()[0],co.getAllPoints()[0]);
-        assertEquals(tr2.getAllPoints()[1],co.getAllPoints()[1]);
-        assertEquals(tr2.getAllPoints()[2],co.getAllPoints()[2]);
-
-
+        for (int i=0;i<3;i++) {
+            assertEquals(tr1.getAllPoints()[i],co.getAllPoints()[i]);
+            assertEquals(tr2.getAllPoints()[i],co1.getAllPoints()[i]);
+        }
     }
 
     @Test
@@ -122,7 +111,6 @@ class Triangle_2DTest {
 
         Triangle_2D co=(Triangle_2D) tr1.copy();
         Triangle_2D co2=(Triangle_2D) tr2.copy();
-
 
         dc1=co.getAllPoints()[0].distance(co.getAllPoints()[1]);
         dc2=co.getAllPoints()[1].distance(co.getAllPoints()[2]);
@@ -184,4 +172,15 @@ class Triangle_2DTest {
             assertEquals(tr2.getAllPoints()[i].y(),co2.getAllPoints()[i].y(),Ex2_Const.EPS);
         }
     }
+    @Test
+    void toStringTest(){
+
+        String a=tr1.toString();
+        String b="0.0,0.0,0.0,2.0,2.0,0.0";
+
+        assertTrue(a.equals(b));
+    }
+
+
+
 }

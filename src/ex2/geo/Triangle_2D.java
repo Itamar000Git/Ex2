@@ -11,7 +11,6 @@ import ex2.ex2.Ex2_Const;
 public class Triangle_2D implements GeoShape{
 	////// add your code here //////
 	private Point_2D _p1,_p2,_p3;
-	//private Triangle_2D tr=new Triangle_2D(_p1,_p2,_p3);
 
 	////////////////////////////////
 	public Triangle_2D(Point_2D p1, Point_2D p2, Point_2D p3) {				//from point to triangle
@@ -60,6 +59,14 @@ public class Triangle_2D implements GeoShape{
 		return p3;
 		////////////////////////////////
 	}
+
+	/**
+	 * For knowing if suspect point is inside the triangle we creat 3 new triangles
+	 * with the suspect point and 2 othe =r point from the triangle.
+	 * If the sum of the three new triangle areas is match to the original triangle area, the suspect point is inside.
+	 * @param ot - a query 2D point
+	 * @return
+	 */
 	@Override
 	public boolean contains(Point_2D ot) {// create 3 new triangles with the checked point, and compares the areas.---done
 		Triangle_2D tr=new Triangle_2D(_p1,_p2,_p3);
@@ -79,6 +86,10 @@ public class Triangle_2D implements GeoShape{
 		return co;
 	}
 
+	/**
+	 * Heron's formula
+	 * @return
+	 */
 	@Override
 	public double area() {
 		double a,b,c,s,temp;
@@ -135,6 +146,5 @@ public class Triangle_2D implements GeoShape{
 	{
 		return(_p1.toString()+","+_p2.toString()+","+_p3.toString());
 	}
-
 
 }

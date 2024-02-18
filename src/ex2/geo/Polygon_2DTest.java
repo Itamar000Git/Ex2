@@ -108,8 +108,6 @@ class Polygon_2DTest {
         double a= po.area();
 
         assertEquals(a,4);
-
-
     }
 
     @Test
@@ -155,9 +153,7 @@ class Polygon_2DTest {
             assertEquals(temp.x(),co.getAllPoints()[i].x(),Ex2_Const.EPS);
             assertEquals(temp.y(),co.getAllPoints()[i].y(),Ex2_Const.EPS);
         }
-
     }
-
     @Test
     void copy() {
         Point_2D p1=new Point_2D(0,0);
@@ -204,9 +200,6 @@ class Polygon_2DTest {
 
         po.scale(cen,r2);
         assertEquals(a,po.area(),Ex2_Const.EPS);
-
-
-
     }
 
     @Test
@@ -237,9 +230,6 @@ class Polygon_2DTest {
             assertEquals(temp.x(),co.getAllPoints()[i].x(),Ex2_Const.EPS);
             assertEquals(temp.y(),co.getAllPoints()[i].y(),Ex2_Const.EPS);
         }
-
-
-
     }
 
     @Test
@@ -264,7 +254,5 @@ class Polygon_2DTest {
             assertTrue(max_Y>po.getAllPoints()[i].y());
 
         }
-
-
     }
 }

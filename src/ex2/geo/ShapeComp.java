@@ -72,10 +72,8 @@ public class ShapeComp implements Comparator<GUI_Shape>{
 		}
 		if(_flag == Ex2_Const.Sort_By_Anti_toString) {
 			ans = o2.toString().compareTo(o1.toString());
-			//ans = o1.toString().compareTo(o2.toString());
 		}
 		if(_flag == Ex2_Const.Sort_By_Tag) {
-			//o1.setTag();
 			a1 =o1.getTag();
 			a2 =o2.getTag();
 			if(a1>a2) {ans=1;}

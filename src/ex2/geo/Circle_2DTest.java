@@ -14,7 +14,7 @@ class Circle_2DTest {
 
 
     @Test
-    void getRadius() {//?
+    void getRadius() {
 
         assertEquals(c1.getRadius(),5);
         assertEquals(c2.getRadius(),7);
@@ -28,7 +28,10 @@ class Circle_2DTest {
     }
 
     @Test
-    void testToString() {//?
+    void testToString() {
+        String str= c1.toString();
+        System.out.println(str);
+        assertTrue(str.equals("0.0,0.0, 5.0"));
     }
 
     @Test

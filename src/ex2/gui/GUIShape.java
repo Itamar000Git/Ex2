@@ -29,10 +29,15 @@ public class GUIShape implements GUI_Shape{
 	public GUIShape(GUIShape ot) {
 		this(ot._g, ot._fill, ot._color, ot._tag);
 	}
-	public GUIShape(String s) {				//
-		// TBI (to be implemented...{
-		//GUI_Shape loadShape = new GUIShape()
 
+
+	/**
+	 * This function receive string, split by "," and creat array with shape properties.
+	 * After that we creat shapes by insert to correct string to every property of the shapes.
+	 * @param s
+	 */
+	public GUIShape(String s) {
+		// TBI (to be implemented...{
 		String[] strShape = s.split(",");
 		int colorV=Integer.parseInt(strShape[1]);
 		boolean fi=Boolean.parseBoolean(strShape[2]);
@@ -141,9 +146,7 @@ public class GUIShape implements GUI_Shape{
 	@Override
 	public void setTag(int tag) {
 		_tag = tag;
-		
 	}
-
 	@Override
 	public GUI_Shape copy() {
 		GUI_Shape cp = new GUIShape(this);

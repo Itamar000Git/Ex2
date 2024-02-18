@@ -1,8 +1,10 @@
 package ex2.geo;
 
+import ex2.ex2.Ex2_Const;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class Rect_2DTest {
 
@@ -55,7 +57,6 @@ class Rect_2DTest {
 
         s=rec2.area();//
         assertEquals(s,3);
-
     }
 
     @Test
@@ -121,21 +122,71 @@ class Rect_2DTest {
     @Test
     void scale() {
         double ratio1=(90.0/100), ratio2=(100.0/90);
-        double a1,a2;
-        Rect_2D co=(Rect_2D)rec1.copy();
+        double a1;
+        double d1,d2,d3,d4, r1,r2,r3,r4;
+
         Point_2D p=new Point_2D(1,1);
+
+        d1=rec1.getAllPoints()[0].distance(rec1.getAllPoints()[1]);
+        d2=rec1.getAllPoints()[1].distance(rec1.getAllPoints()[2]);
+        d3=rec1.getAllPoints()[2].distance(rec1.getAllPoints()[3]);
+        d4=rec1.getAllPoints()[3].distance(rec1.getAllPoints()[0]);
 
         a1=rec1.area();
         rec1.scale(p,ratio1);
 
+        r1=rec1.getAllPoints()[0].distance(rec1.getAllPoints()[1]);
+        r2=rec1.getAllPoints()[1].distance(rec1.getAllPoints()[2]);
+        r3=rec1.getAllPoints()[2].distance(rec1.getAllPoints()[3]);
+        r4=rec1.getAllPoints()[3].distance(rec1.getAllPoints()[0]);
+
+        assertNotEquals(d1,r1);
+        assertNotEquals(d2,r2);
+        assertNotEquals(d3,r3);
+        assertNotEquals(d4,r4);
+
         assertNotEquals(a1,rec1.area());
 
         rec1.scale(p,ratio2);
+
+        r1=rec1.getAllPoints()[0].distance(rec1.getAllPoints()[1]);
+        r2=rec1.getAllPoints()[1].distance(rec1.getAllPoints()[2]);
+        r3=rec1.getAllPoints()[2].distance(rec1.getAllPoints()[3]);
+        r4=rec1.getAllPoints()[3].distance(rec1.getAllPoints()[0]);
+
+        assertEquals(d1,r1);
+        assertEquals(d2,r2);
+        assertEquals(d3,r3);
+        assertEquals(d4,r4);
 
         assertEquals(a1,rec1.area());
     }
 
     @Test
     void rotate() {
+
+        Point_2D cen=new Point_2D(3,3);
+        Rect_2D r1=(Rect_2D)rec1.copy();
+
+        rec1.rotate(cen,30);
+        assertNotEquals(r1.get_p1(),rec1.get_p1());
+        assertNotEquals(r1.get_p2(),rec1.get_p2());
+        assertNotEquals(r1.get_p3(),rec1.get_p3());
+        assertNotEquals(r1.get_p4(),rec1.get_p4());
+
+        rec1.rotate(cen,-30);
+
+
+        for (int i=0;i<4;i++){
+            assertEquals(r1.getAllPoints()[i].x(),rec1.getAllPoints()[i].x(), Ex2_Const.EPS);
+            assertEquals(r1.getAllPoints()[i].y(),rec1.getAllPoints()[i].y(), Ex2_Const.EPS);
+        }
+    }
+
+    @Test
+    void toStringTest(){
+        String a=rec1.toString();
+        String b="0.0,2.0,2.0,0.0,0.0,0.0,2.0,2.0,";
+        assertTrue(a.equals(b));
     }
 }
