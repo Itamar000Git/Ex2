@@ -116,7 +116,7 @@ public class ShapeCollection implements GUI_Shape_Collection {
 	 * @param t
 	 * @return
 	 */
-	private String modifyString( String replacement,String[] t) {
+	public String modifyString( String replacement,String[] t) {
 		// Replace the target substring with the replacement string
 		String temp="";
 

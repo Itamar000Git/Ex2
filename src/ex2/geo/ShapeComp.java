@@ -39,7 +39,7 @@ public class ShapeComp implements Comparator<GUI_Shape>{
 	 * and 0 iff o1 and o2 are equals.
 	 */
 	@Override
-	public int compare(GUI_Shape o1, GUI_Shape o2) {				//need to be done
+	public int compare(GUI_Shape o1, GUI_Shape o2) {
 		double a1=-1, a2 = -1;
 		GeoShape s1 = o1.getShape(), s2 = o2.getShape();
 		int ans =0;
