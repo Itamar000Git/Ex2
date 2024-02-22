@@ -31,8 +31,8 @@ public class Rect_2D implements GeoShape{
 		double y4=Double.parseDouble(file[12]);
 
 		_p1= new Point_2D(x1,y1);
-		_p2= new Point_2D(x2,y2);
-		_p3= new Point_2D(x3,y3);
+		_p3= new Point_2D(x2,y2);
+		_p2= new Point_2D(x3,y3);
 		_p4= new Point_2D(x4,y4);
 	}
 
@@ -159,7 +159,7 @@ public class Rect_2D implements GeoShape{
 	@Override
 	public String toString()
 	{
-		return(_p4.toString()+","+_p2.toString()+","+_p3.toString()+","+_p1.toString());
+		return(_p1.toString()+","+_p3.toString()+","+_p2.toString()+","+_p4.toString());
 	}
 	@Override
 	public boolean equals(Object rec1) {
