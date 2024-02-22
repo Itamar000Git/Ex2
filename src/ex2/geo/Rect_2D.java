@@ -20,6 +20,22 @@ public class Rect_2D implements GeoShape{
 		this._p4=new Point_2D(p2.x(),p1.y());
 		////////////////////////////////
 	}
+	public Rect_2D(String[] file){
+		double x1=Double.parseDouble(file[5]);
+		double y1=Double.parseDouble(file[6]);
+		double x2=Double.parseDouble(file[7]);
+		double y2=Double.parseDouble(file[8]);
+		double x3=Double.parseDouble(file[9]);
+		double y3=Double.parseDouble(file[10]);
+		double x4=Double.parseDouble(file[11]);
+		double y4=Double.parseDouble(file[12]);
+
+		_p4= new Point_2D(x1,y1);
+		_p3= new Point_2D(x2,y2);
+		_p2= new Point_2D(x3,y3);
+		_p1= new Point_2D(x4,y4);
+	}
+
 	public Rect_2D(Rect_2D r1) {			        //done
 		////// add your code here //////
 		Point_2D [] rec=r1.getAllPoints();
@@ -140,9 +156,19 @@ public class Rect_2D implements GeoShape{
 		this._p4.rotate(center,angleDegrees);
 
 	}
-
+	@Override
 	public String toString()
 	{
 		return(this._p1.toString()+","+this._p2.toString()+","+this._p3.toString()+","+this._p4.toString()+",");
 	}
+	@Override
+	public boolean equals(Object rec1) {
+
+		if((rec1==null || !(rec1 instanceof Rect_2D))) {return false;}
+
+		Rect_2D rec2 = (Rect_2D) rec1;
+
+		return (_p1.equals(rec2._p1)&& _p2.equals(rec2._p2)&&_p3.equals(rec2._p3)&&_p4.equals(rec2._p4));
+	}
+
 }

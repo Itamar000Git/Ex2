@@ -78,5 +78,15 @@ public class Circle_2D implements GeoShape{
 		////////////////////////////////
 	}
 
+	@Override
+	public boolean equals(Object c1) {
+
+		if((c1==null || !(c1 instanceof Circle_2D))) {return false;}
+
+		Circle_2D c2 = (Circle_2D)c1;
+
+		return (_center.equals(c2._center)&& (_radius==c2._radius));
+	}
+
 
 }

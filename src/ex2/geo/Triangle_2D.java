@@ -141,10 +141,20 @@ public class Triangle_2D implements GeoShape{
 		_p3.rotate(center,angleDegrees);
 
 	}
-
+	@Override
 	public String toString()
 	{
 		return(_p1.toString()+","+_p2.toString()+","+_p3.toString());
 	}
+	@Override
+	public boolean equals(Object tr1) {
+
+		if((tr1==null || !(tr1 instanceof Triangle_2D))) {return false;}
+
+		Triangle_2D tr2 = (Triangle_2D) tr1;
+
+		return (_p1.equals(tr2._p1)&& _p2.equals(tr2._p2)&&_p3.equals(tr2._p3));
+	}
+
 
 }

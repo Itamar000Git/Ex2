@@ -255,4 +255,35 @@ class Polygon_2DTest {
 
         }
     }
+    @Test
+    void equalsTest(){
+        Point_2D p1=new Point_2D(0,0);
+        Point_2D p2=new Point_2D(-1,1);
+        Point_2D p3=new Point_2D(0.5,2);
+        Point_2D p4=new Point_2D(2,3);
+        Point_2D p5=new Point_2D(3,0.5);
+        po.add(p1);
+        po.add(p2);
+        po.add(p3);
+        po.add(p4);
+        po.add(p5);
+         Polygon_2D pol2 =(Polygon_2D) po.copy();
+        assertTrue(po.equals(pol2));
+
+        Polygon_2D pol3 = new Polygon_2D();
+        Point_2D p6=new Point_2D(2,0);
+        Point_2D p7=new Point_2D(3,1);
+        Point_2D p8=new Point_2D(3,1);
+        Point_2D p9=new Point_2D(3,1);
+        Point_2D p10=new Point_2D(3,1);
+
+        pol3.add(p6);
+        pol3.add(p7);
+        pol3.add(p8);
+        pol3.add(p9);
+        pol3.add(p10);
+
+        assertFalse(po.equals(pol3));
+
+    }
 }

@@ -142,4 +142,13 @@ class Circle_2DTest {
         assertEquals(c1.getCenter().y(),co1.getCenter().y(),Ex2_Const.EPS);
 
     }
+
+    @Test
+    void equalsTest(){
+
+        Circle_2D co = (Circle_2D) c1.copy();
+        assertTrue(c1.equals(co));
+    }
+
+
 }

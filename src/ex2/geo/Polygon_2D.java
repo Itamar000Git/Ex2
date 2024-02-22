@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class Polygon_2D implements GeoShape{
 	////// add your code here //////
 	private ArrayList<Point_2D> Apoly;
-
 	////////////////////////////////
 	public Polygon_2D() {					//done
 		////// add your code here //////
@@ -195,6 +194,20 @@ public class Polygon_2D implements GeoShape{
 			Apoly.get(i).rotate(center,angleDegrees);
 		}
 		////////////////////////////////
+	}
+	@Override
+	public boolean equals(Object pol) {
+
+		if((pol==null || !(pol instanceof Polygon_2D))) {return false;}
+
+		Polygon_2D pol2 = (Polygon_2D) pol;
+		Boolean b=true;
+		for (int i=0 ;i< Apoly.size();i++){
+			if(!Apoly.get(i).equals(pol2.getAllPoints()[i])){
+				b=false;
+			}
+		}
+		return b;
 	}
 
 }

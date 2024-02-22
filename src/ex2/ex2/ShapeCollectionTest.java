@@ -1,4 +1,9 @@
 package ex2.ex2;
+import ex2.geo.Circle_2D;
+import ex2.geo.Point_2D;
+import ex2.gui.Ex2;
+import ex2.gui.GUIShape;
+import ex2.gui.GUI_Shape;
 
 import ex2.geo.*;
 import ex2.gui.Ex2;
@@ -13,19 +18,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ShapeCollectionTest {
-    private Point_2D p1= new Point_2D(1,2);
-    private Point_2D p2= new Point_2D(2,2);
-
-    private Point_2D p3= new Point_2D(0,0);
-
+    private Point_2D p1= new Point_2D(5,5);
+    private Point_2D p2= new Point_2D(2,1);
+    private Point_2D p3= new Point_2D(3,3);
     private Segment_2D s1=new Segment_2D(p1,p2);
-    private Circle_2D c1 = new Circle_2D(p1,5);
+    private Circle_2D c1 = new Circle_2D(p1,2);
     private Triangle_2D tr1=new Triangle_2D(p1,p2,p3);
     private Boolean f=true;
     private Color myColor1 = new Color(255,0,0);
     private Color myColor2 = new Color(0,0,255);
     private Color myColor3 = new Color(0,255,0);
-    private GUI_Shape shape1 = new GUIShape(c1,f,myColor1,2);
+    private GUI_Shape shape1 = new GUIShape(c1,false,myColor1,2);
     private GUI_Shape shape2 = new GUIShape(s1,f,myColor2,1);
 
     private GUI_Shape shape3 = new GUIShape(tr1,f,myColor3,3);
@@ -128,10 +131,25 @@ class ShapeCollectionTest {
 
     @Test
     void save() {//checked in Ex2Test
-//        String file=shape1.toString()+"\n"+ shape2.toString() +"\n"+ shape3.toString();
-//        System.out.println(file);
-//       col.save(file);
+        Ex2 ex2 = Ex2.getInstance();
+        col.add(shape1);
+        col.add(shape2);
 
+        String file=shape1.toString()+"\n"+ shape2.toString();
+
+       col.save(file);
+        ex2.init(col);
+
+        String[] str1 = ex2.getInfo().toString().split(",");
+        String[] str2 = file.toString().split(",");
+
+
+        System.out.println(ex2.getInfo().toString());
+        System.out.println(file.toString());
+
+        while (true){
+            ex2.show();
+        }
     }
 
     @Test
@@ -151,10 +169,22 @@ class ShapeCollectionTest {
 
     @Test
     void load() {
-//
-//        String file = "a0.txt"; //make sure the file is your working directory.
-//        col.load(file);
 
+        Ex2 ex2 = Ex2.getInstance();
+        String file = "a0.txt"; //make sure the file is your working directory.
+        String[] str1 =file.split(",");
+
+        col.load(file);
+
+        ex2.init(col);
+        String[] str2 = ex2.toString().split(",");
+
+  for (int i=2;i<str1.length;i++){
+      assertTrue(str1[i]==str2[i+2]);
+  }
+        while (true){
+            ex2.show();
+        }
     }
 
     @Test

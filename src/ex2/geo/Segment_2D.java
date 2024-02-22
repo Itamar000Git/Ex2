@@ -81,9 +81,18 @@ public class Segment_2D implements GeoShape{
 		_p2.rotate(center,angleDegrees);
 
 	}
-
+	@Override
 	public String toString()
 	{
 		return(_p1.toString()+","+_p2.toString());
+	}
+	@Override
+	public boolean equals(Object s1) {
+
+		if((s1==null || !(s1 instanceof Segment_2D))) {return false;}
+
+		Segment_2D s2 = (Segment_2D)s1;
+
+		return (_p1.equals(s2._p1)&& _p2.equals(s2._p2));
 	}
 }

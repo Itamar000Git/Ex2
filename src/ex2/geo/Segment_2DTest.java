@@ -123,5 +123,14 @@ class Segment_2DTest {
 
         assertTrue(a.equals(b));
     }
+    @org.junit.jupiter.api.Test
+    void equalsTest(){
+        Segment_2D co =(Segment_2D) s2.copy();
+
+        assertTrue(s2.equals(co));
+
+    }
+
+
 
 }

@@ -181,6 +181,13 @@ class Triangle_2DTest {
         assertTrue(a.equals(b));
     }
 
+    @Test
+   void equalsTest(){
+        Triangle_2D co =(Triangle_2D) tr1.copy();
+
+        assertTrue(tr1.equals(co));
+
+    }
 
 
 }

@@ -189,4 +189,13 @@ class Rect_2DTest {
         String b="0.0,2.0,2.0,0.0,0.0,0.0,2.0,2.0,";
         assertTrue(a.equals(b));
     }
+
+    @Test
+  void equalsTest(){
+        Rect_2D rec2 =(Rect_2D) rec1.copy();
+
+        assertTrue(rec1.equals(rec2));
+
+    }
+
 }
