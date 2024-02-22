@@ -30,10 +30,10 @@ public class Rect_2D implements GeoShape{
 		double x4=Double.parseDouble(file[11]);
 		double y4=Double.parseDouble(file[12]);
 
-		_p4= new Point_2D(x1,y1);
-		_p3= new Point_2D(x2,y2);
-		_p2= new Point_2D(x3,y3);
-		_p1= new Point_2D(x4,y4);
+		_p1= new Point_2D(x1,y1);
+		_p2= new Point_2D(x2,y2);
+		_p3= new Point_2D(x3,y3);
+		_p4= new Point_2D(x4,y4);
 	}
 
 	public Rect_2D(Rect_2D r1) {			        //done
@@ -66,10 +66,10 @@ public class Rect_2D implements GeoShape{
 	 */
 	public Point_2D[] getAllPoints(){
 		Point_2D [] points = new Point_2D[4];
-		points[0]=_p4;
-		points[1]=_p2;
-		points[2]=_p3;
-		points[3]=_p1;
+		points[0]=_p1;
+		points[1]=_p3;
+		points[2]=_p2;
+		points[3]=_p4;
 
 		return points;
 	}
@@ -159,7 +159,7 @@ public class Rect_2D implements GeoShape{
 	@Override
 	public String toString()
 	{
-		return(this._p1.toString()+","+this._p2.toString()+","+this._p3.toString()+","+this._p4.toString()+",");
+		return(_p4.toString()+","+_p2.toString()+","+_p3.toString()+","+_p1.toString());
 	}
 	@Override
 	public boolean equals(Object rec1) {

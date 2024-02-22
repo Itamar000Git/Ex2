@@ -155,7 +155,7 @@ public class GUIShape implements GUI_Shape{
 	}
 	@Override
 	public String toString() {
-		String ans = ""+this.getClass().getSimpleName()+","+_color+","+_fill+","+_tag+","+this._g.getClass().getSimpleName()+","+_g.toString();
+		String ans =this.getClass().getSimpleName()+","+_color+","+_fill+","+_tag+","+this._g.getClass().getSimpleName()+","+_g.toString();
 		return ans;
 	}
 	@Override
