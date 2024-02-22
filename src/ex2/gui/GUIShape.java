@@ -88,7 +88,7 @@ public class GUIShape implements GUI_Shape{
 				break;
 			case "Polygon_2D":
 				Polygon_2D pol = new Polygon_2D();
-				for (int i=0;i<(otherPoints.length-2);i++){
+				for (int i=0;i<(otherPoints.length-1);i++){
 					Point_2D p =new Point_2D(otherPoints[i],otherPoints[i+1]);
 					pol.add(p);
 					i++;
