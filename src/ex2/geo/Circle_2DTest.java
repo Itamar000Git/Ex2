@@ -15,10 +15,8 @@ class Circle_2DTest {
 
     @Test
     void getRadius() {
-
         assertEquals(c1.getRadius(),5);
         assertEquals(c2.getRadius(),7);
-
     }
 
     @Test
@@ -47,7 +45,7 @@ class Circle_2DTest {
     }
 
     @Test
-    void area() {                       //done
+    void area() {
         double e= c1.area(); //25*PI
         double e1= 25* Math.PI;
         assertEquals(e,e1, Ex2_Const.EPS);
@@ -58,7 +56,7 @@ class Circle_2DTest {
     }
 
     @Test
-    void perimeter() {                          //done
+    void perimeter() {
         double p=c1.perimeter();    //10*PI
         double p1=10*Math.PI;
         assertEquals(p,p1,Ex2_Const.EPS);
@@ -69,7 +67,7 @@ class Circle_2DTest {
     }
 
     @Test
-    void translate() {                                  //done
+    void translate() {
         Point_2D vec= new Point_2D(5,7);
         Point_2D vec2= new Point_2D(-5,-7);
 
@@ -98,12 +96,10 @@ class Circle_2DTest {
         assertEquals(c2.getCenter(),co.getCenter());
 
         assertNotEquals(c1.getCenter(),co.getCenter());
-
-
     }
 
     @Test
-    void scaleTest() {      //done
+    void scaleTest() {
         double r=c1.getRadius();
         double ratio1=90.0/100, ratio2=100.0/90;
 
@@ -117,7 +113,7 @@ class Circle_2DTest {
     }
 
     @Test
-    void rotateTest() {     //done
+    void rotateTest() {
 
         Circle_2D co=(Circle_2D) c2.copy();
         Circle_2D co1=(Circle_2D) c1.copy();

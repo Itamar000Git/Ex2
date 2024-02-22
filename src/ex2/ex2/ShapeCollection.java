@@ -43,36 +43,43 @@ public class ShapeCollection implements GUI_Shape_Collection {
 	 * @return
 	 */
 	@Override
-	public GUI_Shape removeElementAt(int i) {			//done
-		//////////add your code below ///////////
+	public GUI_Shape removeElementAt(int i) {
 		_shapes.remove(i);
 		return null;
-		//////////////////////////////////////////
 	}
 
-
+	/**
+	 * Adding shape in specific place in the array
+	 * @param s - the gui_shape
+	 * @param i - the location (index) in which s should be added
+	 */
 	@Override
 	public void addAt(GUI_Shape s, int i) {			///done
-		//////////add your code below ///////////
 		_shapes.add(i,s);
-		//////////////////////////////////////////
 	}
 
+	/**
+	 * Adding shape at the end of the array
+	 * @param s - the gui_shape
+	 */
 	@Override
 	public void add(GUI_Shape s) {
 		if(s!=null && s.getShape()!=null) {
 			_shapes.add(s);
 		}
 	}
+
+	/**
+	 * Make a copy of the shape collection
+	 * @return
+	 */
 	@Override
 	public GUI_Shape_Collection copy() {
-		//////////add your code below ///////////
 		ShapeCollection SC = new ShapeCollection();
 		for (int i=0;i<_shapes.size();i++){
 			SC.add(_shapes.get(i).copy());
 		}
 		return SC;
-		//////////////////////////////////////////
 	}
 
 	/**
@@ -98,16 +105,14 @@ public class ShapeCollection implements GUI_Shape_Collection {
 
 
 	/**
-	 * Implement the CLEAR option
+	 * Implement the CLEAR option, and removing all shapes.
 	 */
 	@Override
-	public void removeAll() {				//done
-		//////////add your code below ///////////
+	public void removeAll() {
 		int size=_shapes.size();
 		for(int i=0;i<size;i++){
 			_shapes.remove(0);
 		}
-		//////////////////////////////////////////
 	}
 
 	/**
@@ -117,7 +122,6 @@ public class ShapeCollection implements GUI_Shape_Collection {
 	 * @return
 	 */
 	public String modifyString( String replacement,String[] t) {
-		// Replace the target substring with the replacement string
 		String temp="";
 
 		for (int i=4;i<t.length;i++){
@@ -129,20 +133,17 @@ public class ShapeCollection implements GUI_Shape_Collection {
 
 	/**
 	 * Convert every shape to string and Save file after changing the color value.
+	 * got help from YouTube and chatGPT.
 	 * @param file - the file name in which this collection will be saved.
 	 */
 	@Override
 	public void save(String file) {
-		//////////add your code below ///////////
-		int cEncode;
-		String ModifiedString;
-		String[] s = file.split(",");
-
-			try (BufferedWriter writer = new BufferedWriter(new FileWriter(s[0]))) {
-				for (GUI_Shape shape: _shapes) {
+		String[] s = file.split(",");		//split to array by ","
+			try (BufferedWriter writer = new BufferedWriter(new FileWriter(s[0]))) {		//declare on BufferedWriter
+				for (GUI_Shape shape: _shapes) {			// for each shape
 					String modifiedString = shape.toString();
 
-					if (modifiedString.contains("java.awt.Color")) {
+					if (modifiedString.contains("java.awt.Color")) {			//replacing the color encoding
 						String[] t= modifiedString.split(",");
 						int colorCode = colorEncoding(shape.getColor());
 						modifiedString = modifyString(String.valueOf(colorCode),t);
@@ -153,10 +154,13 @@ public class ShapeCollection implements GUI_Shape_Collection {
 			} catch (IOException e) {
 				throw new RuntimeException("Error writing to file: " + e.getMessage());
 			}
-
-		//////////////////////////////////////////
 	}
 
+	/**
+	 * Boaz code, the formula for getting the color code
+	 * @param c
+	 * @return
+	 */
 	public static int colorEncoding(Color c) {
 		int r = c.getRed();
 		int b = c.getBlue();
@@ -165,23 +169,21 @@ public class ShapeCollection implements GUI_Shape_Collection {
 		return ce;
 	}
 
-
-	public String s[];
-
 	@Override
 /**
  * Takes text file and convert every line to string,this string sends to GUIShape class for convert.
+ * 	 * got help from YouTube and chatGPT.
  */
 	public void load(String file) {
 		try {
-			File myObj = new File(file);
-			Scanner myReader = new Scanner(myObj);
-			_shapes.clear();
+			File myObj = new File(file);		//create new File object
+			Scanner myReader = new Scanner(myObj);	//create scanner
+			_shapes.clear();						// clear all the shapes
 
-			while (myReader.hasNextLine()) {
-				String data = myReader.nextLine();
-				GUIShape shape = new GUIShape(data);
-				_shapes.add(shape);
+			while (myReader.hasNextLine()) {		//while the is next line
+				String data = myReader.nextLine();		//the string inserted to data
+				GUIShape shape = new GUIShape(data);	//the gui shape takes this string and inr guishape class divide it as wanted
+				_shapes.add(shape);						//adding the shape to the arraylist
 				System.out.println(data);
 			}
 			myReader.close();
@@ -190,6 +192,7 @@ public class ShapeCollection implements GUI_Shape_Collection {
 			e.printStackTrace();
 		}
 	}
+
 
 	@Override
 	public String toString() {

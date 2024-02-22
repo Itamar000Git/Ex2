@@ -31,31 +31,14 @@ class GUIShapeTest {
     private GUI_Shape shape4 = new GUIShape(c2,f,myColor2,2);
 
 
-
-
-
     ShapeCollection col = new ShapeCollection();
-
-
-
-
-
     @Test
     void getShape() {
         col.add(shape1);
         col.add(shape2);
         col.add(shape3);
        assertTrue(shape1.getShape().toString().equals("1.0,2.0, 5.0"));
-
     }
-
-    @Test
-    void setShape() {
-
-        //no need to test geo shape
-
-    }
-
     @Test
     void isFilled() {
         assertTrue(shape2.isFilled());
@@ -122,13 +105,4 @@ class GUIShapeTest {
         assertTrue(shape1.toString().equals("GUIShape,java.awt.Color[r=255,g=0,b=0],false,2,Circle_2D,1.0,2.0, 5.0"));
     }
 
-    @Test
-    void isSelected() {
-        //no need to test set by mouse clicks
-    }
-
-    @Test
-    void setSelected() {
-        //no need to test set by mouse clicks
-    }
 }

@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class Segment_2DTest {
-    // building before use in test
     private Segment_2D s1=new Segment_2D(Point_2D.ORIGIN,new Point_2D(0,1));
     private Point_2D p1=new Point_2D(1,0);
     private Point_2D p2=new Point_2D(5,3);
@@ -38,7 +37,7 @@ class Segment_2DTest {
     }
 
     @org.junit.jupiter.api.Test
-    void perimeterTest() {                      //done
+    void perimeterTest() {
         double p=s1.perimeter();//2
         assertEquals(p,2, Ex2_Const.EPS);
 
@@ -47,7 +46,7 @@ class Segment_2DTest {
     }
 
     @org.junit.jupiter.api.Test
-    void translateTest() {                              //done
+    void translateTest() {
         Point_2D vec= new Point_2D(5,7);
         Point_2D vec2= new Point_2D(-5,-7);
         Segment_2D q0= new Segment_2D(s2);
@@ -63,7 +62,7 @@ class Segment_2DTest {
     }
 
     @org.junit.jupiter.api.Test
-    void copy() {                               //done
+    void copy() {
 
         Segment_2D co= (Segment_2D) s1.copy(); //copy returns "GeoShape" that need to cast as segment
         assertEquals(s1.get_p1(),co.get_p1());

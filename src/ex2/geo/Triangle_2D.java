@@ -9,55 +9,46 @@ import ex2.ex2.Ex2_Const;
  *
  */
 public class Triangle_2D implements GeoShape{
-	////// add your code here //////
+
 	private Point_2D _p1,_p2,_p3;
 
-	////////////////////////////////
 	public Triangle_2D(Point_2D p1, Point_2D p2, Point_2D p3) {				//from point to triangle
-		////// add your code here //////
 	_p1=new Point_2D(p1);
 	_p2=new Point_2D(p2);
 	_p3=new Point_2D(p3);
-
-		////////////////////////////////
 	}
-	public Triangle_2D(Triangle_2D t1) {					//from triangle to points
-		////// add your code here //////
+
+	/**
+	 * From triangle to points
+	 * @param t1
+	 */
+	public Triangle_2D(Triangle_2D t1) {
 		_p1=new Point_2D(t1._p1);
 		_p2=new Point_2D(t1._p2);
 		_p3=new Point_2D(t1._p3);
-		////////////////////////////////
 	}
 
 
-	public Point_2D[] getAllPoints() {				//done
-		////// add your code here //////
+	public Point_2D[] getAllPoints() {
+
 		Point_2D [] alltp = {new Point_2D(_p1),new Point_2D(_p2),new Point_2D(_p3)};
 
 		return alltp;
-		////////////////////////////////
+
 	}
 
-	public Point_2D getP1() {				//done
-		////// add your code here //////
+	public Point_2D getP1() {
 		Point_2D p1 = new Point_2D(_p1);
 
 		return p1;
-		////////////////////////////////
 	}
-	public Point_2D getP2() {				//done
-		////// add your code here //////
+	public Point_2D getP2() {
 		Point_2D p2 = new Point_2D(_p2);
-
 		return p2;
-		////////////////////////////////
 	}
-	public Point_2D getP3() {				//done
-		////// add your code here //////
+	public Point_2D getP3() {
 		Point_2D p3 = new Point_2D(_p3);
-
 		return p3;
-		////////////////////////////////
 	}
 
 	/**
@@ -68,7 +59,7 @@ public class Triangle_2D implements GeoShape{
 	 * @return
 	 */
 	@Override
-	public boolean contains(Point_2D ot) {// create 3 new triangles with the checked point, and compares the areas.---done
+	public boolean contains(Point_2D ot) {// create 3 new triangles with the checked point, and compares the areas.
 		Triangle_2D tr=new Triangle_2D(_p1,_p2,_p3);
 		Triangle_2D tr1= new Triangle_2D(ot,_p2,_p3);
 		Triangle_2D tr2=new Triangle_2D(_p1,ot,_p3);

@@ -18,7 +18,6 @@ public class Circle_2D implements GeoShape{
 		this._radius = rad;
 	}
 	public Circle_2D(Circle_2D c) {
-
 		this(c.getCenter(), c.getRadius());
 	}
 	public double getRadius() {return this._radius;}
@@ -26,56 +25,65 @@ public class Circle_2D implements GeoShape{
 	 @Override
 	    public String toString()
 	    {
-			////// add your code here //////
 			return _center.toString()+", "+_radius;
-			////////////////////////////////
 		}
+
+	/**
+	 * checks if a point is inside the circle by comparing the distance to the center and the radios.
+	 * @param ot - a query 2D point
+	 * @return
+	 */
 	@Override
-	public boolean contains(Point_2D ot) {				//done
-		////// add your code here //////
+	public boolean contains(Point_2D ot) {
 		return (ot.distance(_center)<_radius);
-		////////////////////////////////
-	}
-	
-	@Override
-	public double area() {
-		////// add your code here //////
-		double e=Math.PI * Math.pow(_radius,2);
-		return e;
-		////////////////////////////////
-	}
-	@Override
-	public double perimeter() {
-		////// add your code here //////
-		double p= 2* Math.PI *_radius;
-		return p;
-		////////////////////////////////
-	}
-	@Override
-	public void translate(Point_2D vec) {
-		////// add your code here //////
-		_center.move(vec);
-		////////////////////////////////
-	}
-	@Override
-	public GeoShape copy() {				//done
-		////// add your code here //////
-		return new Circle_2D(this);
-		////////////////////////////////
 	}
 
+	/**
+	 * circle area formula
+	 * @return
+	 */
 	@Override
-	public void scale(Point_2D center, double ratio) {	//done
-		////// add your code here //////
-		_center.scale(center,ratio);
-		_radius*=ratio;
-		////////////////////////////////
+	public double area() {
+		double e=Math.PI * Math.pow(_radius,2);
+		return e;
+	}
+
+	/**
+	 * circle perimeter formula
+	 * @return
+	 */
+	@Override
+	public double perimeter() {
+		double p= 2* Math.PI *_radius;
+		return p;
+	}
+
+	/**
+	 * moving the center point by vector.
+	 * @param vec - a vector from the 0,0
+	 */
+	@Override
+	public void translate(Point_2D vec) {
+		_center.move(vec);
 	}
 	@Override
-	public void rotate(Point_2D center, double angleDegrees) {	//done
-		////// add your code here //////
+	public GeoShape copy() {
+		return new Circle_2D(this);
+	}
+
+	/**
+	 * scale the circle by increasing or decreasing the radios at the same ratio.
+	 * @param center - center point from which the rescaling is being done.
+	 * @param ratio - the ratio of rescaling.
+	 */
+	@Override
+	public void scale(Point_2D center, double ratio) {
+		_center.scale(center,ratio);
+		_radius*=ratio;
+	}
+	@Override
+	public void rotate(Point_2D center, double angleDegrees) {
 		_center.rotate(center,angleDegrees);
-		////////////////////////////////
 	}
 
 	@Override

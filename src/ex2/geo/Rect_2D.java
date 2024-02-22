@@ -12,14 +12,18 @@ public class Rect_2D implements GeoShape{
 	 * @param p1
 	 * @param p2
 	 */
-	public Rect_2D(Point_2D p1, Point_2D p2) {		        //done
-		////// add your code here //////
+	public Rect_2D(Point_2D p1, Point_2D p2) {
 		this._p1=new Point_2D(p1);
 		this._p2=new Point_2D(p2);
 		this._p3=new Point_2D(p1.x(),p2.y());
 		this._p4=new Point_2D(p2.x(),p1.y());
-		////////////////////////////////
 	}
+
+	/**
+	 * There is spacial builder for rectangle from file because the way we build it is different.
+	 * we replaced p2 with p3 for match boaz code.
+	 * @param file
+	 */
 	public Rect_2D(String[] file){
 		double x1=Double.parseDouble(file[5]);
 		double y1=Double.parseDouble(file[6]);
@@ -37,13 +41,10 @@ public class Rect_2D implements GeoShape{
 	}
 
 	public Rect_2D(Rect_2D r1) {			        //done
-		////// add your code here //////
-		Point_2D [] rec=r1.getAllPoints();
 		_p1=new Point_2D(r1._p1) ;
 		_p2=new Point_2D(r1._p2) ;
 		_p3=new Point_2D(r1._p3) ;
 		_p4=new Point_2D(r1._p4) ;
-		////////////////////////////////
 	}
 
 
@@ -61,7 +62,7 @@ public class Rect_2D implements GeoShape{
 	}
 
 	/**
-	 * save rectangle direction even after copy.
+	 * Save rectangle direction even after copy.
 	 * @return
 	 */
 	public Point_2D[] getAllPoints(){
@@ -70,7 +71,6 @@ public class Rect_2D implements GeoShape{
 		points[1]=_p3;
 		points[2]=_p2;
 		points[3]=_p4;
-
 		return points;
 	}
 
@@ -78,10 +78,7 @@ public class Rect_2D implements GeoShape{
 	public Point_2D set_p1(Point_2D p) {
 		return _p1=p;
 	}
-	public Point_2D set_p2(Point_2D p) {
-
-		return _p2=p;
-	}
+	public Point_2D set_p2(Point_2D p) {return _p2=p;}
 	public Point_2D set_p3(Point_2D p) {
 		return _p3=p;
 	}
@@ -90,7 +87,7 @@ public class Rect_2D implements GeoShape{
 	}
 
 	/**
-	 * using past knowledge from triangle contain.
+	 * Using past knowledge from triangle contain.
 	 * (also can be done by checks triangle contain of 2 triangles)
 	 * @param ot - a query 2D point
 	 * @return
@@ -111,12 +108,21 @@ public class Rect_2D implements GeoShape{
 		return a;
 	}
 
+	/**
+	 * Area formula.
+	 * @return
+	 */
 	@Override
 	public double area() {
 		double Recarea;
 		Recarea= _p1.distance(_p3) *_p3.distance(_p2);
 		return Recarea;
 	}
+
+	/**
+	 * Perimeter formula.
+	 * @return
+	 */
 
 	@Override
 	public double perimeter() {
@@ -156,11 +162,22 @@ public class Rect_2D implements GeoShape{
 		this._p4.rotate(center,angleDegrees);
 
 	}
+
+	/**
+	 * Sending e different string for match boaz code.
+	 * @return
+	 */
 	@Override
 	public String toString()
 	{
 		return(_p1.toString()+","+_p3.toString()+","+_p2.toString()+","+_p4.toString());
 	}
+
+	/**
+	 * Using the equals function from point for each point.
+	 * @param rec1
+	 * @return
+	 */
 	@Override
 	public boolean equals(Object rec1) {
 

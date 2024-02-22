@@ -22,7 +22,7 @@ class Triangle_2DTest {
     Point_2D cen=new Point_2D(5,5);
 
     @Test
-    void getAllPointsTest() {                   //done
+    void getAllPointsTest() {
         Point_2D [] arrp = {p1,p2,p3};
         Point_2D [] mytr= tr1.getAllPoints();
         assertArrayEquals(mytr,arrp);
@@ -34,7 +34,7 @@ class Triangle_2DTest {
     }
 
     @Test
-    void containsTest() {                           //done
+    void containsTest() {
         Point_2D p7=new Point_2D(0.5,0.5);
         Point_2D p8=new Point_2D(2.5,0);
         Point_2D p9=new Point_2D(-2,2);
@@ -46,7 +46,7 @@ class Triangle_2DTest {
     }
 
     @Test
-    void area() {                       //done
+    void area() {
         double a=tr1.area();    //1
 
         assertEquals(a,2, Ex2_Const.EPS);
@@ -103,7 +103,7 @@ class Triangle_2DTest {
     }
 
     @Test
-    void scaleTest() {              //done
+    void scaleTest() {
         double r1=90.0/100, r2=100.0/90;
 
         double d1,d2,d3,dc1,dc2,dc3;

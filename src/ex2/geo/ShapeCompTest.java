@@ -26,8 +26,10 @@ class ShapeCompTest {
 
     ShapeCollection col = new ShapeCollection();
 
-
-    @Test           //done
+    /**
+     * strCol1[6] = the type of the first shape.
+     */
+    @Test
     void compareTest() {
         String[] strCol1,strCol2;
         col.add(shape1);
@@ -37,35 +39,31 @@ class ShapeCompTest {
         strCol1= strCol.split(",");
 
         assertEquals(strCol1[6],"Circle_2D");   //first in
-        System.out.println(strCol);
 
          col.sort(ShapeComp.CompByArea);        //by area
-
         strCol = col.toString();
         strCol2= strCol.split(",");
-
-        System.out.println(strCol);
         assertEquals(strCol2[6],"Segment_2D");     //segment area=0
 
         col.sort(ShapeComp.CompByAntiArea);
         assertEquals(strCol1[6],"Circle_2D");       //circle area>0
 
         col.sort(ShapeComp.CompByAntiPerimeter);
-        assertEquals(strCol2[6],"Segment_2D");
+        assertEquals(strCol2[6],"Segment_2D");     //Segment permiter is smaller
 
         col.sort(ShapeComp.CompByPerimeter);
-        assertEquals(strCol1[6],"Circle_2D");
+        assertEquals(strCol1[6],"Circle_2D");        //Circle perimeter is higher
 
         col.sort(ShapeComp.CompByAntiToString);
-        assertEquals(strCol2[6],"Segment_2D");
+        assertEquals(strCol2[6],"Segment_2D");       //The segment string is longer
 
         col.sort(ShapeComp.CompByToString);
-        assertEquals(strCol1[6],"Circle_2D");
+        assertEquals(strCol1[6],"Circle_2D");         //The circle string is shorter
 
         col.sort(ShapeComp.CompByTag);
-        assertEquals(strCol2[6],"Segment_2D");
+        assertEquals(strCol2[6],"Segment_2D");          //segment tag is 1
 
         col.sort(ShapeComp.CompByAntiTag);
-        assertEquals(strCol1[6],"Circle_2D");
+        assertEquals(strCol1[6],"Circle_2D");           //circle tag is 2
     }
 }

@@ -14,10 +14,6 @@ class Point_2DTest {
     private Point_2D p4 = new Point_2D(1.2,8.5);
 
 
-
-
-
-
     @Test
     void x() {
         assertEquals(p1.x(),1.2);

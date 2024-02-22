@@ -37,6 +37,10 @@ public class ShapeComp implements Comparator<GUI_Shape>{
 	 * @param o2 the second object to be compared.
 	 * @return 1 iff o1 is grater than o1, -1 iff o1 is smaller than o2,
 	 * and 0 iff o1 and o2 are equals.
+	 *
+	 * In this function we sort the shapes by few parameters.
+	 * In each type of sort we decide witch shape above the other by "ans".
+	 * This method creates a standard way to akk types of sorts.
 	 */
 	@Override
 	public int compare(GUI_Shape o1, GUI_Shape o2) {

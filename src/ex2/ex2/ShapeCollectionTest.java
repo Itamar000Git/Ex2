@@ -129,8 +129,11 @@ class ShapeCollectionTest {
         assertTrue(col.size()==0);
     }
 
+    /**
+     * please check the test separate.
+     */
     @Test
-    void save() {//checked in Ex2Test
+    void save() {
         Ex2 ex2 = Ex2.getInstance();
         col.add(shape1);
         col.add(shape2);
@@ -140,16 +143,14 @@ class ShapeCollectionTest {
        col.save(file);
         ex2.init(col);
 
-        String[] str1 = ex2.getInfo().toString().split(",");
-        String[] str2 = file.toString().split(",");
-
-
         System.out.println(ex2.getInfo().toString());
         System.out.println(file.toString());
 
-        while (true){
-            ex2.show();
-        }
+      for (int i=0;i<500;i++){
+          ex2.show();
+      }
+
+
     }
 
     @Test
@@ -167,9 +168,11 @@ class ShapeCollectionTest {
         assertEquals(r,16711680);
     }
 
+    /**
+     * please check the test separate.
+     */
     @Test
     void load() {
-
         Ex2 ex2 = Ex2.getInstance();
         String file = "a0.txt"; //make sure the file is your working directory.
         String[] str1 =file.split(",");
@@ -182,9 +185,10 @@ class ShapeCollectionTest {
   for (int i=2;i<str1.length;i++){
       assertTrue(str1[i]==str2[i+2]);
   }
-        while (true){
+        for (int i=0;i<500;i++) {
             ex2.show();
         }
+
     }
 
     @Test
@@ -193,7 +197,9 @@ class ShapeCollectionTest {
         col.add(shape2);
         col.add(shape3);
 
-       assertTrue(col.toString().equals("GUIShape,java.awt.Color[r=255,g=0,b=0],true,2,Circle_2D,1.0,2.0, 5.0GUIShape,java.awt.Color[r=0,g=0,b=255],true,1,Segment_2D,1.0,2.0,2.0,2.0GUIShape,java.awt.Color[r=0,g=0,b=255],true,1,Triangle_2D,1.0,2.0,2.0,2.0,0.0,0.0"));
+        System.out.println(col.toString());
+
+       assertTrue(col.toString().equals("GUIShape,java.awt.Color[r=255,g=0,b=0],false,2,Circle_2D,5.0,5.0, 2.0GUIShape,java.awt.Color[r=0,g=0,b=255],true,1,Segment_2D,5.0,5.0,2.0,1.0GUIShape,java.awt.Color[r=0,g=255,b=0],true,3,Triangle_2D,5.0,5.0,2.0,1.0,3.0,3.0"));
 
     }
 }

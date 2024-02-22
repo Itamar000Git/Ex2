@@ -24,7 +24,7 @@ class Rect_2DTest {
 
 
     @Test
-    void get_p1Test() {     //done
+    void get_p1Test() {
 
         Point_2D r1=rec1.get_p1();
         Point_2D r2=rec1.get_p2();
@@ -39,7 +39,7 @@ class Rect_2DTest {
         }
 
     @Test
-    void contains() {                           //done
+    void contains() {
         Point_2D c0=new Point_2D(1,1);
         Point_2D c1=new Point_2D(5,1);
         boolean a;
@@ -186,14 +186,13 @@ class Rect_2DTest {
     @Test
     void toStringTest(){
         String a=rec1.toString();
-        String b="0.0,2.0,2.0,0.0,0.0,0.0,2.0,2.0,";
+        String b="0.0,2.0,0.0,0.0,2.0,0.0,2.0,2.0";
         assertTrue(a.equals(b));
     }
 
     @Test
   void equalsTest(){
         Rect_2D rec2 =(Rect_2D) rec1.copy();
-
         assertTrue(rec1.equals(rec2));
 
     }

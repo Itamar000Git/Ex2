@@ -75,7 +75,7 @@ class Polygon_2DTest {
     }
 
     @Test
-    void contains() {           //need to check
+    void contains() {
         Point_2D p1=new Point_2D(0,0);
         Point_2D p2=new Point_2D(-1,1);
         Point_2D p3=new Point_2D(0.5,2);
@@ -203,7 +203,7 @@ class Polygon_2DTest {
     }
 
     @Test
-    void rotate() {             //done
+    void rotate() {
         Point_2D p1=new Point_2D(0,0);
         Point_2D p2=new Point_2D(0,1);
         Point_2D p3=new Point_2D(0,2);

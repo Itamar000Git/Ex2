@@ -74,9 +74,6 @@ public class GUIShape implements GUI_Shape{
 
 			case "Rect_2D":
 				geo = new Rect_2D(strShape);
-//				y2=Double.parseDouble(strShape[8]);
-//				p2 = new Point_2D(x2,y2);
-//				geo=new Rect_2D(p1,p2);
 				break;
 
 			case "Triangle_2D":
@@ -107,6 +104,8 @@ public class GUIShape implements GUI_Shape{
 		_color=new Color(colorV);
 		_tag=t;
 		_isSelected=false;
+
+
 
 	}
 	@Override

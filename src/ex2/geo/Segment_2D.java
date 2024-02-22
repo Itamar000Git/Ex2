@@ -10,32 +10,35 @@ import ex2.ex2.Ex2_Const;
  */
 public class Segment_2D implements GeoShape{
 	private Point_2D _p1 ,_p2;
-	public Segment_2D(Point_2D a, Point_2D b) {//this is the builder and this is the tow points that build the segment---done
-		////// add your code here //////
+
+	/**
+	 * This is the builder and this is the tow points that build the segment
+	 * @param a
+	 * @param b
+	 */
+	public Segment_2D(Point_2D a, Point_2D b) {
 	_p1= new Point_2D(a);
 	_p2= new Point_2D(b);
-		////////////////////////////////
 	}
-	public Segment_2D(Segment_2D t1) { 		// done, build the segment from tow points
-		////// add your code here //////
+	public Segment_2D(Segment_2D t1) {
 		_p1= new Point_2D(t1._p1);
 		_p2= new Point_2D(t1._p2);
-		////////////////////////////////
 	}
 
-	public Point_2D get_p1() { 					//done
-		////// add your code here //////
-		return new Point_2D(_p1); //duplicate
-		////////////////////////////////
+	public Point_2D get_p1() {
+		return new Point_2D(_p1);
 	}
-	public Point_2D get_p2() {					//done
-		////// add your code here //////
+	public Point_2D get_p2() {
 		return new Point_2D(_p2);
-		////////////////////////////////
 	}
 
+	/**
+	 * Checks if a point is on the segment.
+	 * @param ot - a query 2D point
+	 * @return
+	 */
 	@Override
-	public boolean contains(Point_2D ot) { //true if point is inside the segment --- done
+	public boolean contains(Point_2D ot) {
 		boolean ans = false;
 
 		double dist=_p1.distance(_p2);
@@ -46,30 +49,42 @@ public class Segment_2D implements GeoShape{
 		return ans;
 	}
 
+	/**
+	 * There is no area in segment
+	 * @return
+	 */
 	@Override
-	public double area() {				// there is no area in segment --- done
+	public double area() {
 		return 0;
 	}
 
+	/**
+	 * The perimeter is 2 times the segment distance
+	 * @return
+	 */
 	@Override
-	public double perimeter() {			// is 2 times the segment distance --- done
+	public double perimeter() {
 		double d=_p1.distance(_p2);
 		return (2*d);
 	}
 
+	/**
+	 * Moving the segment by vector
+	 * @param vec - a vector from the 0,0
+	 */
 	@Override
-	public void translate(Point_2D vec) { //move the segment on some vector ---done
+	public void translate(Point_2D vec) {
 		_p1.move(vec);
 		_p2.move(vec);
 
 	}
 
 	@Override
-	public GeoShape copy() { 			//done
+	public GeoShape copy() {
 		return new Segment_2D(_p1,_p2);
 	}
 
-	@Override							//done
+	@Override
 	public void scale(Point_2D center, double ratio) {
 		_p1.scale(center,ratio);
 		_p2.scale(center,ratio);
